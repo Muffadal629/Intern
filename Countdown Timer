@@ -1,73 +1,48 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <title>Simple Countdown Timer</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
             text-align: center;
             padding: 50px;
             margin: 0;
         }
 
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #e44d26;
-        }
-
-        p {
-            color: #333;
-        }
-
         #countdown {
-            font-size: 1.5em;
-            margin-top: 20px;
-            color: #777;
-        }
-
-        a {
-            color: #e44d26;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
+            font-size: 2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404 Not Found</h1>
-        <p>Sorry, the page you are looking for might be in another castle!</p>
-        <p>Return to <a href="/">Home</a></p>
-        <div id="countdown"></div>
-    </div>
+    <h1>Simple Countdown Timer</h1>
+    <div id="countdown"></div>
 
     <script>
         // Countdown timer in seconds
-        var countdownTime = 10;
+        var countdownTime = 5 * 60; // 5 minutes
 
         function updateCountdown() {
             var countdownElement = document.getElementById('countdown');
-            countdownElement.innerHTML = 'Redirecting in ' + countdownTime + ' seconds...';
+            var minutes = Math.floor(countdownTime / 60);
+            var seconds = countdownTime % 60;
 
-            if (countdownTime <= 0) {
-                // Redirect to home page after countdown
-                window.location.href = '/';
-            } else {
+            // Format the time with leading zeros
+            var formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            countdownElement.innerHTML = formattedTime;
+
+            if (countdownTime > 0) {
                 // Update countdown time
                 countdownTime--;
                 setTimeout(updateCountdown, 1000);
+            } else {
+                // Countdown reached zero
+                countdownElement.innerHTML = "Time's up!";
             }
         }
 
