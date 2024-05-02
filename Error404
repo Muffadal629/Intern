@@ -103,3 +103,22 @@
       font-size: 1em;
     }
   }
+
+
+docker pull openjdk
+
+doker ps
+
+docker images
+
+docker run --name JAVA -it -d openjdk
+
+docker exec -it JAVA jshell
+
+/exit
+
+docker stop container id
+
+docker container rm container id
+
+docker image prune
